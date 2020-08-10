@@ -1,0 +1,13 @@
+{
+  "name": "project-1 nodemon configuration",
+  "watch": [
+    "src"
+  ],
+  "ext": "ts",
+  "exec": "ts-node -r tsconfig-paths/register ./src/index.ts",
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules"
+    ]
+  }
+}

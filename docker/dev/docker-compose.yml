@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  server:
+    container_name: project-1-server
+    build: 
+      context: ../../
+      dockerfile: docker/dev/node.dockerfile
+    volumes:
+      - ../../src:/app/src
+    ports:
+      - 3000:3000
+    depends_on: 
+      - database
+    networks: 
+      - project-1-network
+    command: ["npm", "run", "dev"]
+  database:
+    environment: 
+      - POSTGRES_USER=devUser
+      - POSTGRES_PASSWORD=q1w2e3
+      - POSTGRES_DB=devDB
+    container_name: project-1-db
+    image: postgres:9.6.1
+    volumes:
+      - ./database-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks: 
+      - project-1-network
+
+volumes: 
+  database-data: {}
+networks:
+  project-1-network:
