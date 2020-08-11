@@ -1,4 +1,3 @@
-import 'reflect-metadata'; // for TypeORM
 import express from 'express';
 import helmet from 'helmet';
 import compression from 'compression';

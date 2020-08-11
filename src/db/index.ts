@@ -1,3 +1,4 @@
+import 'reflect-metadata'; // for TypeORM
 import { createConnection, getConnectionManager, ConnectionManager, Connection } from 'typeorm';
 import { log, sleep } from '@/lib/utils';
 
