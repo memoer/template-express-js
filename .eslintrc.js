@@ -10,6 +10,22 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
-  rules: {},
+  // prettier-ignore
+  settings: { 
+    // for import/extension error
+    'import/resolver': { node: { extensions: ['.ts'] },
+    // for import/no-unresolved error ( tsconfig path alias )
+     typescript: {} } 
+    },
+  rules: {
+    // for import/extension error
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+      },
+    ],
+  },
   ignorePatterns: ['scripts/*'],
 };

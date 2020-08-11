@@ -2,11 +2,11 @@ import express from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
 import * as Sentry from '@sentry/node';
+import router from '@/router';
+import errorHandler from '@/middleware/errorHandler';
 import configEnv from './env';
 import apolloServer from './apolloServer';
 import configLog from './log';
-import router from '@/router';
-import errorHandler from '@/middleware/errorHandler';
 
 const app = express();
 
