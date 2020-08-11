@@ -1,11 +1,5 @@
-import {
-  createConnection,
-  getConnectionManager,
-  ConnectionManager,
-  Connection,
-} from 'typeorm';
-import log from '@/lib/log';
-import sleep from '@/lib/sleep';
+import { createConnection, getConnectionManager, ConnectionManager, Connection } from 'typeorm';
+import { log, sleep } from '@/lib/utils';
 
 export default class Database {
   private connectionManager: ConnectionManager;
@@ -26,10 +20,7 @@ export default class Database {
     const LIMIT_CONNECT_TRY = 3;
     const SLEEP_TIME = 3000;
     for (let i = 0; ; i++) {
-      log(
-        'database',
-        `the number of trying connect to database : ${i + 1}-----------------`,
-      );
+      log('database', `the number of trying connect to database : ${i + 1}-----------------`);
       log('database', 'create Connection');
       try {
         const connection = await createConnection();
@@ -37,10 +28,7 @@ export default class Database {
         return connection;
       } catch (error) {
         if (i >= LIMIT_CONNECT_TRY) {
-          log(
-            'database',
-            `the number of DB Connection is ${LIMIT_CONNECT_TRY}`,
-          );
+          log('database', `the number of DB Connection is ${LIMIT_CONNECT_TRY}`);
           log('database', 'restart please after DB Check');
           throw new Error(error);
         }

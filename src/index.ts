@@ -1,6 +1,6 @@
 import app from '@/config/app';
 import Database from '@/db';
-import log from '@/lib/log';
+import { log } from '@/lib/utils';
 
 class Server {
   private database: Database | null = null;
@@ -11,20 +11,23 @@ class Server {
   }
   private testDBConnection() {
     if (!this.database) {
-      // prettier-ignore
       throw new Error(log('database', 'error : database is null in Server Class [ src/index.ts ]'));
     }
     return this.database.getConnection();
   }
   private serverOn() {
     if (!this.server) {
-      // prettier-ignore
       throw new Error(log('server', 'error : server is null in Server Class [ src/index.ts ]'));
     }
-    // prettier-ignore
-    this.server.listen(app.get('PORT'), () => { log('server', `running on the port >> ${process.env.SERVER_PORT}`) });
+    if (!process.env.NODE_PORT && process.env.NODE_ENV === 'production') {
+      throw new Error(log('server', 'error : server port is undefined in production environment'));
+    }
+    const SERVER_PORT = process.env.SERVER_PORT || 3000;
+    this.server.listen(SERVER_PORT, () => {
+      log('server', `running on the port >> ${SERVER_PORT}`);
+    });
   }
-  public async run() {
+  public async up() {
     try {
       await this.testDBConnection();
       await this.serverOn();
@@ -35,4 +38,4 @@ class Server {
 }
 
 const server = new Server(app, new Database());
-server.run();
+server.up();

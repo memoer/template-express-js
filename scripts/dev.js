@@ -26,12 +26,9 @@ class NodemonProcess {
     this.myNodemon = nodemon(nodemonConfig);
   }
   myNodemonOn() {
-    nodemon
-      .on('start', this.startLog)
-      .on('quit', this.quitLog)
-      .on('restart', this.restartLog);
+    nodemon.on('start', this.startLog).on('quit', this.quitLog).on('restart', this.restartLog);
   }
-  run() {
+  up() {
     try {
       this.initMyNodemon();
       this.myNodemonOn();
@@ -42,4 +39,4 @@ class NodemonProcess {
 }
 
 const nodemonProcess = new NodemonProcess(nodemonConfig);
-nodemonProcess.run();
+nodemonProcess.up();
