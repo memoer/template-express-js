@@ -19,8 +19,8 @@ export default class Database {
   private async connect() {
     const LIMIT_CONNECT_TRY = 3;
     const SLEEP_TIME = 3000;
-    for (let i = 0; ; i++) {
-      log('database', `the number of trying connect to database : ${i + 1}-----------------`);
+    for (let i = 1; ; i++) {
+      log('database', `the number of trying connect to database : ${i} -----------------`);
       log('database', 'create Connection');
       try {
         const connection = await createConnection();

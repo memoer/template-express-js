@@ -6,34 +6,35 @@ const nodemonConfig = require('../nodemon.json');
 class NodemonProcess {
   myNodemon = null;
   nodemonConfig = null;
+
   constructor(nodemonConfig) {
     this.nodemonConfig = nodemonConfig;
   }
-  startLog() {
-    console.log('NODEMON\t| start server in dev environment');
-  }
-  quitLog() {
-    console.log('NODEMON\t| quit server in dev environment');
-    console.log('NODEMON\t| bye');
-  }
-  restartLog() {
-    console.log('NODEMON\t| quit server in dev environment');
-  }
+
   initMyNodemon() {
     if (!nodemonConfig) {
       throw new Error('NODEMON\t| Error : nodemonConfig is none');
     }
     this.myNodemon = nodemon(nodemonConfig);
   }
-  myNodemonOn() {
-    nodemon.on('start', this.startLog).on('quit', this.quitLog).on('restart', this.restartLog);
+
+  log(status) {
+    console.log(`NODEMON\t| ${status} server in dev environment`);
   }
+
+  myNodemonOn() {
+    nodemon
+      .on('start', () => this.log('start'))
+      .on('quit', () => this.log('quit'))
+      .on('restart', () => this.log('restart'));
+  }
+
   up() {
     try {
       this.initMyNodemon();
       this.myNodemonOn();
     } catch (error) {
-      console.error(error.meessage);
+      throw new Error(error);
     }
   }
 }
