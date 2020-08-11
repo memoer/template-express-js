@@ -4,17 +4,21 @@ import { log } from '@/lib/utils';
 
 class Server {
   private database: Database | null = null;
+
   private server: typeof app | null = null;
+
   public constructor(server: typeof app, database: Database) {
     this.server = server;
     this.database = database;
   }
+
   private testDBConnection() {
     if (!this.database) {
       throw new Error(log('database', 'error : database is null in Server Class [ src/index.ts ]'));
     }
-    return this.database.getConnection();
+    return this.database.connect();
   }
+
   private serverOn() {
     if (!this.server) {
       throw new Error(log('server', 'error : server is null in Server Class [ src/index.ts ]'));
@@ -27,12 +31,13 @@ class Server {
       log('server', `running on the port >> ${SERVER_PORT}`);
     });
   }
+
   public async up() {
     try {
       await this.testDBConnection();
-      await this.serverOn();
+      this.serverOn();
     } catch (error) {
-      console.error(error.message);
+      throw new Error(error);
     }
   }
 }

@@ -1,3 +1,6 @@
+const OFF = 0;
+const WARN = 1;
+const ON = 2;
 module.exports = {
   env: {
     es2020: true,
@@ -26,6 +29,16 @@ module.exports = {
         ts: 'never',
       },
     ],
+    'class-methods-use-this': OFF,
+    'no-plusplus': WARN,
   },
   ignorePatterns: ['scripts/*'],
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+      },
+    },
+  ],
 };

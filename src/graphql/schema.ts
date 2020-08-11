@@ -1,9 +1,4 @@
-import {
-  makeExecutableSchema,
-  gql,
-  IResolvers,
-  mergeSchemas,
-} from 'apollo-server-express';
+import { makeExecutableSchema, gql, IResolvers, mergeSchemas } from 'apollo-server-express';
 import { healthTypeDef } from './typeDef';
 import { healthResolver } from './resolvers';
 
@@ -27,12 +22,10 @@ const createSchema = (params: BuildSchemasParams[]) => {
     typeDefs: serverTypeDef,
     resolvers: serverResolver,
   });
-  const schemaList = params.map((params) => makeExecutableSchema(params));
+  const schemaList = params.map(makeExecutableSchema);
   return mergeSchemas({
     schemas: [serverSchema, ...schemaList],
   });
 };
 
-export default createSchema([
-  { typeDefs: healthTypeDef, resolvers: healthResolver },
-]);
+export default createSchema([{ typeDefs: healthTypeDef, resolvers: healthResolver }]);
