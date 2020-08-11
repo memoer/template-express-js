@@ -13,7 +13,7 @@ class NodemonProcess {
 
   initMyNodemon() {
     if (!nodemonConfig) {
-      throw new Error('NODEMON\t| Error : nodemonConfig is none');
+      throw new Error('NODEMON\t| Error : nodemonConfig is NULL [ scripts/dev.js ]');
     }
     this.myNodemon = nodemon(nodemonConfig);
   }
