@@ -6,6 +6,7 @@ import configEnv from './env';
 import apolloServer from './apolloServer';
 import configLog from './log';
 import router from '@/router';
+import errorHandler from '@/middleware/errorHandler';
 
 const app = express();
 
@@ -22,5 +23,6 @@ apolloServer.applyMiddleware({ app, path: '/graphql' });
 if (process.env.NODE_ENV === 'production') {
   app.use(Sentry.Handlers.errorHandler());
 }
+app.use(errorHandler);
 
 export default app;
