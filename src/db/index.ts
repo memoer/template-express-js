@@ -1,6 +1,6 @@
 import 'reflect-metadata'; // for TypeORM
 import { createConnection, getConnectionManager, ConnectionManager } from 'typeorm';
-import { log } from '@/lib/utils';
+import { log } from '@lib/utils';
 
 export default class Database {
   private connectionManager: ConnectionManager;

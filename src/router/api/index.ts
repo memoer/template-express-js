@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { apiGet } from '@/controller/api';
+import { apiGet } from '@controller/api';
 
 const apiRouter = Router();
 

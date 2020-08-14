@@ -23,10 +23,10 @@
     /* Module Resolution Options */
     "baseUrl": "./src", /* Base directory to resolve non-absolute module names. */
     "paths": {
-      "@/*": [
+      "@*": [
         "*"
       ],
-      "@entity/*": [
+      "~entity/*": [
         "db/entity/*"
       ]
     }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */

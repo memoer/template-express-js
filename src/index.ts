@@ -1,6 +1,6 @@
-import app from '@/config/app';
-import Database from '@/db';
-import { log } from '@/lib/utils';
+import app from '@config/app';
+import Database from '@db';
+import { log } from '@lib/utils';
 
 class Server {
   private database: Database | null = null;
