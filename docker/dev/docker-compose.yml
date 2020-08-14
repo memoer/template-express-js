@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   server:
@@ -14,7 +14,7 @@ services:
       - database
     networks: 
       - project-1-network
-    command: ["npm", "run", "dev"]
+    command: sh -c './docker/dev/wait-for database:5432 -t 1000 -- npm run dev'
   database:
     environment: 
       - POSTGRES_USER=devUser
@@ -28,6 +28,7 @@ services:
       - 5432:5432
     networks: 
       - project-1-network
+    
 
 volumes: 
   database-data: {}
