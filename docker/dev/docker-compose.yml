@@ -16,12 +16,10 @@ services:
       - project-1-network
     command: sh -c './docker/dev/wait-for database:5432 -t 1000 -- npm run dev'
   database:
-    environment: 
-      - POSTGRES_USER=devUser
-      - POSTGRES_PASSWORD=q1w2e3
-      - POSTGRES_DB=devDB
     container_name: project-1-db
-    image: postgres:9.6.1
+    build:
+      context: ../../
+      dockerfile: docker/dev/db.dockerfile
     volumes:
       - ./database-data:/var/lib/postgresql/data
     ports:

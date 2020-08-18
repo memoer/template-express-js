@@ -7,9 +7,8 @@
 - run server using builded file : `npm run start`
 
 ### REQUIRED FILES
+- .env
 - .env.development
-- .env.production
-- .env.api-key
 
 ### TECH STACK
 - ExpressJs

@@ -5,10 +5,11 @@
    "main": "index.js",
    "scripts": {
       "dev": "node scripts/dev.js",
-      "docker-dev": "docker-compose -f docker/dev/docker-compose.yml -p project-1-using-nodejs",
+      "dev-docker": "docker-compose -f docker/dev/docker-compose.yml -p project-1-using-nodejs",
+      "dev-typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f .env.development",
       "build": "node scrtips/prod.js",
-      "start": "node build/server.js",
-      "typeorm-cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+      "prod-typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+      "start": "node build/server.js"
    },
    "author": "",
    "license": "ISC",
@@ -18,13 +19,12 @@
       "apollo-server-express": "^2.16.1",
       "compression": "^1.7.4",
       "dotenv": "^8.2.0",
-      "dotenv-expand": "^5.1.0",
       "express": "^4.17.1",
       "helmet": "^4.0.0",
+      "morgan": "^1.10.0",
       "pg": "^8.3.0",
       "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.25",
-      "morgan": "^1.10.0"
+      "typeorm": "0.2.25"
    },
    "devDependencies": {
       "@types/compression": "^1.7.0",

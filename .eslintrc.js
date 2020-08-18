@@ -31,13 +31,14 @@ module.exports = {
     ],
     'class-methods-use-this': OFF,
     'no-plusplus': WARN,
+    '@typescript-eslint/no-unused-vars': [ON, { args: 'none' }],
   },
   ignorePatterns: ['scripts/*'],
   overrides: [
     {
-      files: ['*.ts'],
+      files: ['src/db/entity/*.ts', 'src/db/migration/*.ts'],
       rules: {
-        '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+        'import/prefer-default-export': OFF,
       },
     },
   ],

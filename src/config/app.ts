@@ -1,16 +1,17 @@
 import express from 'express';
 import helmet from 'helmet';
+import dotenv from 'dotenv';
+import path from 'path';
 import compression from 'compression';
 import * as Sentry from '@sentry/node';
 import router from '@router';
 import errorHandler from '@middleware/errorHandler';
-import configEnv from './env';
 import apolloServer from './apolloServer';
 import configLog from './log';
 
 const app = express();
 
-configEnv();
+dotenv.config({ path: path.resolve(`.env.${process.env.NODE_ENV}`) });
 app.use(helmet());
 app.use(compression());
 app.use(express.json());
