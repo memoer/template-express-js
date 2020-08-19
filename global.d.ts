@@ -4,7 +4,7 @@ declare namespace NodeJS {
   }
   interface ProcessEnv {
     NODE_ENV: 'development' | 'production';
-    SERVER_PORT: string | undefined;
+    SERVER_PORT?: string;
     TYPEORM_CONNECTION: string;
     TYPEORM_HOST: string;
     TYPEORM_PORT: string;

@@ -14,7 +14,7 @@ services:
       - database
     networks: 
       - project-1-network
-    command: sh -c './docker/dev/wait-for database:5432 -t 1000 -- npm run dev'
+    command: sh -c './docker/dev/wait-for database:5432 -t 1000 -- npm run dev-local'
   database:
     container_name: project-1-db
     build:

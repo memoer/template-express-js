@@ -4,12 +4,11 @@
    "description": "project using nodeJS & Typescript",
    "main": "index.js",
    "scripts": {
-      "dev": "node scripts/dev.js",
+      "dev-local": "node scripts/dev.js",
       "dev-docker": "docker-compose -f docker/dev/docker-compose.yml -p project-1-using-nodejs",
-      "dev-typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f .env.development",
       "build": "node scrtips/prod.js",
-      "prod-typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-      "start": "node build/server.js"
+      "start": "node build/server.js",
+      "typeorm-cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./ormconfig.env"
    },
    "author": "",
    "license": "ISC",
